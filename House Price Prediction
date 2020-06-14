@@ -81,33 +81,22 @@ x_train= dataset.iloc[:,:-1]
 y_train=dataset.iloc[:,-1]
 x_test=dataset1
 
-#Label Encoding & Get dummies
+# Get dummies
 #for train
-from sklearn.preprocessing import LabelEncoder,OneHotEncoder
-labelencoder=LabelEncoder()
-label=dataset.loc[:,['MSZoning','Street','LotShape','LandContour','Utilities','LotConfig','LandSlope','Neighborhood','Condition1','Condition2','BldgType','HouseStyle','RoofStyle','RoofMatl','Exterior1st','Exterior2nd','MasVnrType','ExterQual','ExterCond','Foundation','BsmtQual','BsmtCond','BsmtExposure','BsmtFinType1','BsmtFinType2','Heating','HeatingQC','CentralAir','Electrical','KitchenQual','Functional','GarageType','GarageFinish','GarageQual','GarageCond','PavedDrive','SaleType','SaleCondition']]
-new_label=label.apply(labelencoder.fit_transform)
-ohe=OneHotEncoder(categorical_features='label')
-#x_train=ohe.fit_transform(x_train)
-new_ohe=pd.get_dummies(dataset.loc[:,['MSZoning','Street','LotShape','LandContour','Utilities','LotConfig','LandSlope','Neighborhood','Condition1','Condition2','BldgType','HouseStyle','RoofStyle','RoofMatl','Exterior1st','Exterior2nd','MasVnrType','ExterQual','ExterCond','Foundation','BsmtQual','BsmtCond','BsmtExposure','BsmtFinType1','BsmtFinType2','Heating','HeatingQC','CentralAir','Electrical','KitchenQual','Functional','GarageType','GarageFinish','GarageQual','GarageCond','PavedDrive','SaleType','SaleCondition']])
-new_ohe.info()
-new1_ohe=new_ohe.drop(['MSZoning_C (all)','Street_Pave','LotShape_IR1','LandContour_Bnk','Utilities_AllPub','LotConfig_Corner','LandSlope_Gtl','Neighborhood_OldTown','Condition1_Artery','Condition2_Artery','BldgType_1Fam','HouseStyle_1.5Fin','RoofStyle_Flat','RoofMatl_CompShg','Exterior1st_MetalSd','Exterior2nd_MetalSd','MasVnrType_Stone','ExterQual_Ex','ExterCond_TA','Foundation_BrkTil','BsmtQual_Ex','BsmtCond_Fa','BsmtExposure_Av','BsmtFinType1_ALQ','BsmtFinType2_ALQ','Heating_GasA','HeatingQC_Ex','CentralAir_N','Electrical_FuseA','KitchenQual_Ex','Functional_Maj1','GarageType_Attchd','GarageFinish_Fin','GarageQual_Fa','GarageCond_Ex','PavedDrive_N','SaleType_COD','SaleCondition_Abnorml'],1)
+dummies=pd.get_dummies(dataset.loc[:,['MSZoning','Street','LotShape','LandContour','Utilities','LotConfig','LandSlope','Neighborhood','Condition1','Condition2','BldgType','HouseStyle','RoofStyle','RoofMatl','Exterior1st','Exterior2nd','MasVnrType','ExterQual','ExterCond','Foundation','BsmtQual','BsmtCond','BsmtExposure','BsmtFinType1','BsmtFinType2','Heating','HeatingQC','CentralAir','Electrical','KitchenQual','Functional','GarageType','GarageFinish','GarageQual','GarageCond','PavedDrive','SaleType','SaleCondition']])
+dummies.info()
+new_dummy=dummies.drop(['MSZoning_C (all)','Street_Pave','LotShape_IR1','LandContour_Bnk','Utilities_AllPub','LotConfig_Corner','LandSlope_Gtl','Neighborhood_OldTown','Condition1_Artery','Condition2_Artery','BldgType_1Fam','HouseStyle_1.5Fin','RoofStyle_Flat','RoofMatl_CompShg','Exterior1st_MetalSd','Exterior2nd_MetalSd','MasVnrType_Stone','ExterQual_Ex','ExterCond_TA','Foundation_BrkTil','BsmtQual_Ex','BsmtCond_Fa','BsmtExposure_Av','BsmtFinType1_ALQ','BsmtFinType2_ALQ','Heating_GasA','HeatingQC_Ex','CentralAir_N','Electrical_FuseA','KitchenQual_Ex','Functional_Maj1','GarageType_Attchd','GarageFinish_Fin','GarageQual_Fa','GarageCond_Ex','PavedDrive_N','SaleType_COD','SaleCondition_Abnorml'],1)
 x_Train=x_train.drop(['MSZoning','Street','LotShape','LandContour','Utilities','LotConfig','LandSlope','Neighborhood','Condition1','Condition2','BldgType','HouseStyle','RoofStyle','RoofMatl','Exterior1st','Exterior2nd','MasVnrType','ExterQual','ExterCond','Foundation','BsmtQual','BsmtCond','BsmtExposure','BsmtFinType1','BsmtFinType2','Heating','HeatingQC','CentralAir','Electrical','KitchenQual','Functional','GarageType','GarageFinish','GarageQual','GarageCond','PavedDrive','SaleType','SaleCondition'],1)
-x_train=pd.concat([x_Train,new1_ohe], axis=1)
+x_train=pd.concat([x_Train,new_dummy], axis=1)
 
 
 
 #for test
-from sklearn.preprocessing import LabelEncoder,OneHotEncoder
-labelencoder=LabelEncoder()
-label=dataset.loc[:,['MSZoning','Street','LotShape','LandContour','Utilities','LotConfig','LandSlope','Neighborhood','Condition1','Condition2','BldgType','HouseStyle','RoofStyle','RoofMatl','Exterior1st','Exterior2nd','MasVnrType','ExterQual','ExterCond','Foundation','BsmtQual','BsmtCond','BsmtExposure','BsmtFinType1','BsmtFinType2','Heating','HeatingQC','CentralAir','Electrical','KitchenQual','Functional','GarageType','GarageFinish','GarageQual','GarageCond','PavedDrive','SaleType','SaleCondition']]
-new_label1=label.apply(labelencoder.fit_transform)
-ohe1=OneHotEncoder(categorical_features='label1')
-new_ohe1=pd.get_dummies(dataset1.loc[:,['MSZoning','Street','LotShape','LandContour','Utilities','LotConfig','LandSlope','Neighborhood','Condition1','Condition2','BldgType','HouseStyle','RoofStyle','RoofMatl','Exterior1st','Exterior2nd','MasVnrType','ExterQual','ExterCond','Foundation','BsmtQual','BsmtCond','BsmtExposure','BsmtFinType1','BsmtFinType2','Heating','HeatingQC','CentralAir','Electrical','KitchenQual','Functional','GarageType','GarageFinish','GarageQual','GarageCond','PavedDrive','SaleType','SaleCondition']])
-new_ohe1.info()
-new1_ohe1=new_ohe1.drop(['MSZoning_C (all)','Street_Pave','LotShape_IR1','LandContour_Bnk','Utilities_AllPub','LotConfig_Corner','LandSlope_Gtl','Neighborhood_OldTown','Condition1_Artery','Condition2_Artery','BldgType_1Fam','HouseStyle_1.5Fin','RoofStyle_Flat','RoofMatl_CompShg','Exterior1st_MetalSd','Exterior2nd_MetalSd','MasVnrType_Stone','ExterQual_Ex','ExterCond_TA','Foundation_BrkTil','BsmtQual_Ex','BsmtCond_Fa','BsmtExposure_Av','BsmtFinType1_ALQ','BsmtFinType2_ALQ','Heating_GasA','HeatingQC_Ex','CentralAir_N','Electrical_FuseA','KitchenQual_Ex','Functional_Maj1','GarageType_Attchd','GarageFinish_Fin','GarageQual_Fa','GarageCond_Ex','PavedDrive_N','SaleType_COD','SaleCondition_Abnorml'],1)
+dummies1=pd.get_dummies(dataset1.loc[:,['MSZoning','Street','LotShape','LandContour','Utilities','LotConfig','LandSlope','Neighborhood','Condition1','Condition2','BldgType','HouseStyle','RoofStyle','RoofMatl','Exterior1st','Exterior2nd','MasVnrType','ExterQual','ExterCond','Foundation','BsmtQual','BsmtCond','BsmtExposure','BsmtFinType1','BsmtFinType2','Heating','HeatingQC','CentralAir','Electrical','KitchenQual','Functional','GarageType','GarageFinish','GarageQual','GarageCond','PavedDrive','SaleType','SaleCondition']])
+dummies1.info()
+new1_dummy=new_ohe1.drop(['MSZoning_C (all)','Street_Pave','LotShape_IR1','LandContour_Bnk','Utilities_AllPub','LotConfig_Corner','LandSlope_Gtl','Neighborhood_OldTown','Condition1_Artery','Condition2_Artery','BldgType_1Fam','HouseStyle_1.5Fin','RoofStyle_Flat','RoofMatl_CompShg','Exterior1st_MetalSd','Exterior2nd_MetalSd','MasVnrType_Stone','ExterQual_Ex','ExterCond_TA','Foundation_BrkTil','BsmtQual_Ex','BsmtCond_Fa','BsmtExposure_Av','BsmtFinType1_ALQ','BsmtFinType2_ALQ','Heating_GasA','HeatingQC_Ex','CentralAir_N','Electrical_FuseA','KitchenQual_Ex','Functional_Maj1','GarageType_Attchd','GarageFinish_Fin','GarageQual_Fa','GarageCond_Ex','PavedDrive_N','SaleType_COD','SaleCondition_Abnorml'],1)
 x_Test=x_test.drop(['MSZoning','Street','LotShape','LandContour','Utilities','LotConfig','LandSlope','Neighborhood','Condition1','Condition2','BldgType','HouseStyle','RoofStyle','RoofMatl','Exterior1st','Exterior2nd','MasVnrType','ExterQual','ExterCond','Foundation','BsmtQual','BsmtCond','BsmtExposure','BsmtFinType1','BsmtFinType2','Heating','HeatingQC','CentralAir','Electrical','KitchenQual','Functional','GarageType','GarageFinish','GarageQual','GarageCond','PavedDrive','SaleType','SaleCondition'],1)
-x_test=pd.concat([x_Test,new1_ohe1], axis=1)
+x_test=pd.concat([x_Test,new1_dummy], axis=1)
 
 
 
@@ -189,7 +178,8 @@ regression=LinearRegression()
 regression.fit(x_train,y_train)
 regression.coef_
 regression.intercept_
-####y_pred
+
+#### y_pred
 y_pred=regression.predict(x_test)
 
 
@@ -199,6 +189,7 @@ y_pred=regression.predict(x_test)
     ####Lasso&Ridge
     
 ###Cross Validation
+
 from sklearn.linear_model import LinearRegression
 lin = LinearRegression()
 from sklearn.model_selection import cross_val_score
