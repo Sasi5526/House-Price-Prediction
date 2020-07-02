@@ -213,8 +213,7 @@ print('Train Score: ', regression.score(x_train,y_train))
 print('Test Score: ', regression.score(x_test,y_pred))
 
 
-'''We have train set accuracy of 0.8474042528525725 and test set accuracy of 1.0
- Here we can see  issue'''
+'''We have train set accuracy of 0.8474042528525725 and test set accuracy of 1.0'''
 
 
 ##Random Forest Regressor
